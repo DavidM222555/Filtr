@@ -11,13 +11,14 @@
       <Content Include="..\..\..\Downloads\F.ico">
         <Link>Assets\F.ico</Link>
       </Content>
+      <None Remove="Icons\FiltrIcon.ico" />
+      <Content Include="Icons\FiltrIcon.ico">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Assets\flower_cat.jpg" />
-      <Content Include="Assets\flower_cat.jpg">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
     </ItemGroup>
 
     <ItemGroup>

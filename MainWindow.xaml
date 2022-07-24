@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Filt'r" Height="550" Width="800"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Icon="Icons/FiltrIcon.ico">
         
         <Grid ShowGridLines="False" Background="WhiteSmoke">
                 <Grid.ColumnDefinitions>
