@@ -15,10 +15,8 @@ public static class BlurHelper
     ///  in that window into the average, creating a 'blocky' distorted image
     /// </summary>
     /// <param name="bitmap"></param>
-    /// <param name="windowLength"></param>
-    /// Length of window that we will slide across the pixels of the image with
-    /// <param name="windowHeight"></param>
-    /// Height of window that we will slide across the pixels of the image with
+    /// <param name="windowLength">Length of window that we will slide across the pixels of the image with</param>
+    /// <param name="windowHeight">Height of window that we will slide across the pixels of the image with</param>
     public static Bitmap BoxDistort(Bitmap bitmap, int windowLength, int windowHeight)
     {
         var imgWidth = bitmap.Width;
@@ -75,7 +73,7 @@ public static class BlurHelper
     /// and then 
     /// </summary>
     /// <param name="imgBitmap"></param>
-    /// <param name="numberOfRounds"></param>
+    /// <param name="numberOfRounds">Number of times to repeat the process</param>
     public static Bitmap HorizontalBlur(Bitmap imgBitmap, int numberOfRounds)
     {
         var imgWidth = imgBitmap.Width;
@@ -113,6 +111,12 @@ public static class BlurHelper
         return resultBitmap;
     }
     
+    /// <summary>
+    /// Performs a blur along vertical lines of pixels.
+    /// </summary>
+    /// <param name="imgBitmap"></param>
+    /// <param name="numberOfRounds">Number of times to repeat the process</param>
+    /// <returns>Modifies imgBitmap</returns>
     public static Bitmap VerticalBlur(Bitmap imgBitmap, int numberOfRounds)
     {
 
@@ -152,6 +156,13 @@ public static class BlurHelper
         return resultBitmap;
     }
 
+    /// <summary>
+    /// Blurs along both the vertical and horizontal axis using both VerticalBlur and HorizontalBlur, effectively
+    /// implementing a box blur algorithm.
+    /// </summary>
+    /// <param name="imgBitmap"></param>
+    /// <param name="numberOfRounds">Number of times to do the process</param>
+    /// <returns></returns>
     public static Bitmap Blur(Bitmap imgBitmap, int numberOfRounds)
     {
         var resultBitmap = imgBitmap;
@@ -174,6 +185,11 @@ public static class BlurHelper
         return resultBitmap;
     }
     
+    /// <summary>
+    /// Given a list of pixel values it averages the A, R, G, and B values.
+    /// </summary>
+    /// <param name="pixels"></param>
+    /// <returns>A color object with the averaged values of A, R, G, and B.</returns>
     private static Color GetPixelAverage(List<Color> pixels)
     {
         var (rSum, gSum, bSum, aSum) = (0, 0, 0, 0);

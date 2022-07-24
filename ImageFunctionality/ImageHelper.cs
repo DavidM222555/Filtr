@@ -8,6 +8,11 @@ namespace PhotoEditingApplication.ImageFunctionality;
 [SupportedOSPlatform("windows")]
 public static class ImageHelper
 {
+    /// <summary>
+    /// Converts an image to grey scale by using the method of average values.
+    /// </summary>
+    /// <param name="imgBitmap"></param>
+    /// <returns></returns>
     public static Bitmap ConvertToGrayscale(Bitmap imgBitmap)
     {
         var imgHeight = imgBitmap.Height;
@@ -29,11 +34,16 @@ public static class ImageHelper
                 imgBitmap.SetPixel(x, y, newPixel);
             }
         }
-        
-        
+
         return imgBitmap;
     }
 
+    /// <summary>
+    /// Converts an image to just black and white. Works by effectively rounding down the average pixel value
+    /// across R, G, and B and then going to 0 or 255 based off that (and thus black and white).
+    /// </summary>
+    /// <param name="imgBitmap"></param>
+    /// <returns></returns>
     public static Bitmap ConvertToBlackWhite(Bitmap imgBitmap)
     {
         var imgHeight = imgBitmap.Height;
