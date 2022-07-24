@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\Downloads\F.ico">
+        <Link>Assets\F.ico</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\flower_cat.jpg" />
+      <Content Include="Assets\flower_cat.jpg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+      <PackageReference Include="System.Drawing.Common" Version="7.0.0-preview.6.22324.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ImageFunctionality" />
+    </ItemGroup>
+
+</Project>

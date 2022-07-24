@@ -1,0 +1,78 @@
+﻿<Window x:Class="PhotoEditingApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Filt'r" Height="550" Width="800"
+        ResizeMode="NoResize">
+        
+        <Grid ShowGridLines="False" Background="WhiteSmoke">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="225"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+        
+                <Border Grid.Column="0" Background="#635bab" />
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Foreground="white" FontStyle="Italic" FontFamily="Segoe"
+                                   HorizontalAlignment="Center" FontSize="42"
+                                   Padding="0,15,0,15">
+                            Filt'r
+                        </TextBlock>
+                        
+                        <Button Content="Neuromancer" Padding="0,0, 0, 30" Background="#635bab" BorderBrush="Transparent" Foreground="black"
+                                FontSize="24" FontFamily="Century Gothic" Style="{StaticResource MyButtonStyle}" Click="SelectNeuromancer_Click">
+                        </Button>
+                        
+                        <Button Content="Dread" Padding="0,30, 0, 30" Background="#635bab" BorderBrush="Transparent" Foreground="black"
+                                FontSize="24" FontFamily="Century Gothic" Style="{StaticResource MyButtonStyle}" Click="SelectDread_Click">
+                        </Button>
+                        
+                        <Button Content="Motion Sick" Padding="0,30, 0, 30" Background="#635bab" BorderBrush="Transparent" Foreground="black"
+                                FontSize="24" FontFamily="Century Gothic" Style="{StaticResource MyButtonStyle}" Click="SelectMotionSick_Click">
+                        </Button>
+                        
+                        <Button Content="Color Pop" Padding="0,10, 0, 10" Background="#635bab" BorderBrush="Transparent" Foreground="black"
+                                FontSize="24" FontFamily="Century Gothic" Style="{StaticResource MyButtonStyle}" Click="SelectColorPop_Click">
+                        </Button>
+                        
+                        <Button Content="Bright Chasm" Padding="0,10, 0, 10" Background="#635bab" BorderBrush="Transparent" Foreground="black"
+                                FontSize="24" FontFamily="Century Gothic" Style="{StaticResource MyButtonStyle}" Click="BrightChasm_Click">
+                        </Button>
+                        
+                        <Button Content="Random" Padding="0,10, 0, 10" Background="#635bab" BorderBrush="Transparent" Foreground="black"
+                                FontSize="24" FontFamily="Century Gothic" Style="{StaticResource MyButtonStyle}" Click="Random_Click">
+                        </Button>
+                        
+                        <Button Content="Upload Image" Padding="0,10, 0, 10" Background="#635bab" BorderBrush="Transparent" Foreground="white"
+                                FontSize="24" FontFamily="Century Gothic" FontStyle="Oblique" Style="{StaticResource MyButtonStyle}" Click="UploadImage_Click">
+                        </Button>
+                    </StackPanel>
+                
+                <Border Grid.Column="0" />
+                
+                <Border Grid.Column="1">
+                        <Grid ShowGridLines="False">
+                                <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="300"/>
+                                        <RowDefinition Height="75"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="320"/>
+                                        <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image Grid.Row="1" Grid.Column="1" Name="ImageBox"/>
+                                
+                                <Button Grid.Row = "2" Grid.Column="1" Content="Save Image" Padding="0,10, 0, 10" Background="#8a6fbd" BorderBrush="Transparent" Foreground="white"
+                                        FontSize="24" FontFamily="Century Gothic" FontStyle="Oblique" Style="{StaticResource MyButtonStyle}" Click="SaveImage_Click">
+                                </Button>
+                        </Grid>
+                </Border>
+        </Grid>
+        
+</Window>
