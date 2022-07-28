@@ -10,6 +10,7 @@ namespace PhotoEditingApplication.ImageFunctionality;
 [SupportedOSPlatform("windows")]
 public static class BlurHelper
 {
+    
     /// <summary>
     ///  Distorts an image by blocking elements together into windows and then turning all pixels
     ///  in that window into the average, creating a 'blocky' distorted image
@@ -143,7 +144,6 @@ public static class BlurHelper
                 }
             }
         }
-        
 
         return imgBitmap;
     }
