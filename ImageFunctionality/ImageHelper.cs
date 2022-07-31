@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.Versioning;
+using System.Linq;
 
 namespace PhotoEditingApplication.ImageFunctionality;
 
@@ -91,16 +91,33 @@ public static class ImageHelper
     {
         var randomKernelValues = new double[3,3];
         var random = new Random();
+
+        // Generate 8 values for the kernel that we 
+        // can guarantee are less than 1
+        randomKernelValues[0, 0] = random.NextDouble() / 9;
+        randomKernelValues[0, 1] = random.NextDouble() / 9;
+        randomKernelValues[0, 2] = random.NextDouble() / 9;
         
-        for (var i = 0; i < 9; i++)
-        {
-            var rDouble = random.NextDouble();
-            var rRangeDouble = rDouble * (1);
+        randomKernelValues[1, 0] = random.NextDouble() / 9;
+        randomKernelValues[1, 1] = random.NextDouble() / 9;
+        randomKernelValues[1, 2] = random.NextDouble() / 9;
         
-            Console.WriteLine("Range double: " + rRangeDouble);
-        }
+        randomKernelValues[2, 0] = random.NextDouble() / 9;
+        randomKernelValues[2, 1] = random.NextDouble() / 9;
         
+        // The ninth value will simply be the difference 
+        // of the current sum and 1
+        randomKernelValues[2, 2] = 1 - randomKernelValues.Cast<double>().Sum() - random.NextDouble() / 9;
+
         return randomKernelValues;
+    }
+
+    public static Bitmap ApplyRandomKernel(Bitmap imgBitmap)
+    {
+        var randomKernel = GenerateRandomKernel();
+        var returnBitmap = ApplyKernel(imgBitmap, randomKernel);
+
+        return returnBitmap;
     }
 
 

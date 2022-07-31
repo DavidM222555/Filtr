@@ -25,7 +25,7 @@ namespace PhotoEditingApplication
         }
 
         // Function taken from the following stackoverflow comment: https://stackoverflow.com/a/34590774
-        private static BitmapImage Convert(Bitmap src)
+        private static BitmapImage Convert(Image src)
         {
             var ms = new MemoryStream();
             src.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
@@ -47,20 +47,20 @@ namespace PhotoEditingApplication
                 if (_bitmapOfCurrentImg != null)
                 {
                     ImageHelper.ConvertToBlackWhite(_bitmapOfCurrentImg);
-                    ImageHelper.GaussianBlur(_bitmapOfCurrentImg);
-                    IntensifyHelper.Intensify(_bitmapOfCurrentImg, 35, 0, 0);
+                    var blurredImage = ImageHelper.GaussianBlur(_bitmapOfCurrentImg);
+                    IntensifyHelper.Intensify(blurredImage, 35, 0, 0);
                 
-                    ImageBox.Source = Convert(_bitmapOfCurrentImg);
+                    ImageBox.Source = Convert(blurredImage);
                 }
                 else
                 {
                     var bitmapOfImg = new Bitmap(_currentFile);
                     ImageHelper.ConvertToBlackWhite(bitmapOfImg);
-                    BlurHelper.BoxDistort(bitmapOfImg, 2, 2);
-                    IntensifyHelper.Intensify(bitmapOfImg, 35, 0, 0);
+                    var blurredImage =  ImageHelper.GaussianBlur(bitmapOfImg);
+                    IntensifyHelper.Intensify(blurredImage, 35, 0, 0);
 
-                    ImageBox.Source = Convert(bitmapOfImg);
-                    _bitmapOfCurrentImg = bitmapOfImg;
+                    ImageBox.Source = Convert(blurredImage);
+                    _bitmapOfCurrentImg = blurredImage;
                 }
             }
             catch
@@ -79,7 +79,6 @@ namespace PhotoEditingApplication
                 {
                     ImageHelper.ConvertToGrayscale(_bitmapOfCurrentImg);
                     IntensifyHelper.IntensifyRed(_bitmapOfCurrentImg, 50);
-                    BlurHelper.VerticalBlur(_bitmapOfCurrentImg, 3);
 
                     ImageBox.Source = Convert(_bitmapOfCurrentImg);
                 }
@@ -88,7 +87,6 @@ namespace PhotoEditingApplication
                     var bitmapOfImg = new Bitmap(_currentFile);
                     ImageHelper.ConvertToGrayscale(bitmapOfImg);
                     IntensifyHelper.IntensifyRed(bitmapOfImg, 50);
-                    BlurHelper.VerticalBlur(bitmapOfImg, 3);
 
                     ImageBox.Source = Convert(bitmapOfImg);
                     _bitmapOfCurrentImg = bitmapOfImg;
@@ -221,7 +219,31 @@ namespace PhotoEditingApplication
         
         private void Random_Click(object sender, RoutedEventArgs e)
         {
+            if (_currentFile == "") return;
             
+            try
+            {
+                if (_bitmapOfCurrentImg != null)
+                {
+                    var randomizedImage = ImageHelper.ApplyRandomKernel(_bitmapOfCurrentImg);
+
+                    ImageBox.Source = Convert(randomizedImage);
+
+                    _bitmapOfCurrentImg = randomizedImage;
+                }
+                else
+                {
+                    var bitmapOfImg = new Bitmap(_currentFile);
+                    var randomizedImg = ImageHelper.ApplyRandomKernel(bitmapOfImg);
+
+                    ImageBox.Source = Convert(randomizedImg);
+                    _bitmapOfCurrentImg = randomizedImg;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Failed to load image");
+            }
         }
         
 
